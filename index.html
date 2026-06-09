@@ -7,9 +7,9 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         
-        /* Sfondo animato con sfumature soffuse (Glow Effects) */
+        /* Sfondo con sfumature di colore visibili che si muovono lentamente */
         body { 
-            background-color: #0a0a0c; 
+            background-color: #060608; 
             color: #ffffff; 
             display: flex; 
             justify-content: center; 
@@ -19,36 +19,50 @@
             padding: 15px;
             position: relative;
         }
+        
+        /* Le due nuvole di colore (Sfumature) */
         body::before, body::after {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 300px;
+            width: 320px;
+            height: 320px;
             border-radius: 50%;
-            filter: blur(120px);
+            filter: blur(90px); /* Ridotto il blur per rendere il colore più denso e visibile */
             z-index: 1;
-            opacity: 0.4;
-            animation: floatGlow 8s infinite alternate ease-in-out;
+            opacity: 0.45;
+            animation: floatGlow 10s infinite alternate ease-in-out;
         }
-        body::before { background: #3a3f4d; top: 15%; left: 20%; }
-        body::after { background: #1a233a; bottom: 15%; right: 20%; animation-delay: 2s; }
+        /* Viola Intenso a sinistra */
+        body::before { 
+            background: linear-gradient(135deg, #6366f1, #a855f7); 
+            top: 10%; 
+            left: 5%; 
+        }
+        /* Blu Oceanico a destra */
+        body::after { 
+            background: linear-gradient(135deg, #06b6d4, #3b82f6); 
+            bottom: 10%; 
+            right: 5%; 
+            animation-delay: 3s; 
+        }
+        
         @keyframes floatGlow {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(20px) scale(1.1); }
+            0% { transform: translateY(0) scale(1) rotate(0deg); }
+            100% { transform: translateY(40px) scale(1.2) rotate(45deg); }
         }
 
-        /* Contenitore stile Smartphone in Vetro Satinato */
+        /* Contenitore Smartphone in Vetro Satinato che assorbe i colori di sfondo */
         .phone-container { 
             width: 100%; 
             max-width: 380px; 
             height: 82vh; 
-            background: rgba(20, 20, 25, 0.7); 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08); 
+            background: rgba(15, 15, 20, 0.75); 
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.12); 
             border-radius: 40px; 
             position: relative; 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6); 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.7); 
             padding: 30px 25px; 
             display: flex; 
             flex-direction: column; 
@@ -57,7 +71,7 @@
             z-index: 2;
         }
 
-        /* Schermate con transizione a sfumare (Dissolvenza) */
+        /* Schermate con transizione morbida a dissolvenza */
         .screen { 
             display: none; 
             width: 100%; 
@@ -67,41 +81,44 @@
             align-items: center; 
             text-align: center; 
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.4s ease-in-out;
         }
         .screen.active { 
             display: flex; 
             opacity: 1;
         }
 
-        h2 { font-size: 1rem; color: rgba(255,255,255,0.9); font-weight: 400; margin-bottom: 25px; letter-spacing: 4px; text-transform: uppercase; }
-        p { font-size: 0.9rem; line-height: 1.6; color: #a0a0aa; margin-bottom: 35px; letter-spacing: 0.3px; text-align: left; width: 100%; }
+        h2 { font-size: 0.95rem; color: rgba(255,255,255,0.85); font-weight: 400; margin-bottom: 25px; letter-spacing: 4px; text-transform: uppercase; }
+        p { font-size: 0.9rem; line-height: 1.6; color: #a1a1aa; margin-bottom: 35px; letter-spacing: 0.3px; text-align: left; width: 100%; }
         
-        .btn-start { background: #ffffff; color: #000000; border: none; padding: 14px 45px; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: all 0.3s ease; margin-top: 10px; box-shadow: 0 10px 20px rgba(255,255,255,0.1); }
+        /* Pulsante Access con leggero riflesso */
+        .btn-start { background: #ffffff; color: #000000; border: none; padding: 14px 45px; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: all 0.3s ease; margin-top: 10px; box-shadow: 0 8px 25px rgba(255,255,255,0.2); }
         .btn-start:active { transform: scale(0.96); opacity: 0.8; }
         
-        /* Box del Testo */
-        .story-text { font-size: 1.05rem; line-height: 1.7; color: #e4e4e7; text-align: left; background: rgba(255, 255, 255, 0.03); padding: 22px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); margin-bottom: 25px; width: 100%; }
-        .blank { display: inline-block; min-width: 80px; border-bottom: 1px solid rgba(255,255,255,0.4); text-align: center; color: #ffffff; font-weight: 500; padding: 0 4px; text-transform: uppercase; letter-spacing: 2px; }
+        /* Box del Testo della Storia */
+        .story-text { font-size: 1.05rem; line-height: 1.7; color: #e4e4e7; text-align: left; background: rgba(255, 255, 255, 0.03); padding: 22px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.06); margin-bottom: 25px; width: 100%; }
+        .blank { display: inline-block; min-width: 80px; border-bottom: 1px solid rgba(255,255,255,0.5); text-align: center; color: #ffffff; font-weight: 500; padding: 0 4px; text-transform: uppercase; letter-spacing: 2px; }
         
         /* Box dell'Indizio */
-        .clue-box { background: rgba(255, 255, 255, 0.02); border: 1px dashed rgba(255,255,255,0.15); padding: 14px; border-radius: 12px; width: 100%; margin-bottom: 25px; font-size: 0.8rem; color: #a0a0aa; letter-spacing: 0.5px; text-align: center; line-height: 1.5; }
+        .clue-box { background: rgba(255, 255, 255, 0.02); border: 1px dashed rgba(255,255,255,0.15); padding: 14px; border-radius: 12px; width: 100%; margin-bottom: 25px; font-size: 0.8rem; color: #a1a1aa; letter-spacing: 0.5px; text-align: center; line-height: 1.5; }
         
-        /* Input Box minimalista */
+        /* Area Input */
         .input-container { width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
         .word-input { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); color: #ffffff; padding: 16px; font-size: 1rem; border-radius: 14px; text-align: center; text-transform: uppercase; letter-spacing: 3px; outline: none; transition: all 0.3s ease; width: 100%; }
-        .word-input:focus { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.07); }
+        .word-input:focus { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.08); }
         
-        .btn-submit { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; padding: 15px; font-size: 0.85rem; font-weight: 500; border-radius: 14px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s; width: 100%; }
-        .btn-submit:hover { background: #ffffff; color: #000000; }
+        /* Pulsante Submit leggermente colorato per dare un tocco vivo */
+        .btn-submit { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; padding: 15px; font-size: 0.85rem; font-weight: 500; border-radius: 14px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s; width: 100%; }
+        .btn-submit:hover { background: #ffffff; color: #000000; box-shadow: 0 10px 20px rgba(255,255,255,0.15); }
         .btn-submit:active { transform: scale(0.98); }
         
+        /* Messaggio Errore Rosso */
         .status-msg { font-size: 0.75rem; height: 20px; color: #f43f5e; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; opacity: 0.9; }
         
-        /* Schermata Finale Sfumata */
-        .final-title { color: #ffffff; font-size: 1.4rem; font-weight: 300; margin-bottom: 15px; letter-spacing: 6px; text-transform: uppercase; }
-        .final-divider { width: 35px; height: 1px; background: rgba(255,255,255,0.2); margin-bottom: 25px; }
-        .final-sub { color: #a0a0aa; font-size: 0.9rem; letter-spacing: 0.5px; line-height: 1.7; max-width: 85%; }
+        /* Schermata Finale */
+        .final-title { color: #ffffff; font-size: 1.35rem; font-weight: 300; margin-bottom: 15px; letter-spacing: 6px; text-transform: uppercase; background: linear-gradient(to right, #ffffff, #a1a1aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .final-divider { width: 35px; height: 1px; background: rgba(255,255,255,0.25); margin-bottom: 25px; }
+        .final-sub { color: #a1a1aa; font-size: 0.9rem; letter-spacing: 0.5px; line-height: 1.7; max-width: 85%; }
     </style>
 </head>
 <body>
@@ -197,11 +214,10 @@
 
 </div>
 
-<script>
+<script {nonce}>
     const targetSequence = ["MIND", "SKIN", "THINK", "DARK", "WILD"];
     let currentPhase = 0;
 
-    // Gestisce il cambio schermata con effetto fade sfumato
     function transitionTo(screenId) {
         const activeScreen = document.querySelector('.screen.active');
         if (activeScreen) {
@@ -215,7 +231,7 @@
                     const currentInput = document.getElementById('input' + currentPhase);
                     if (currentInput) currentInput.focus();
                 }, 50);
-            }, 400); // Durata del fade-out
+            }, 400);
         }
     }
 
@@ -254,7 +270,6 @@
         }
     }
 
-    // Inizializzazione opacità per la prima schermata
     document.getElementById('screen-intro').style.opacity = '1';
 </script>
 </body>
