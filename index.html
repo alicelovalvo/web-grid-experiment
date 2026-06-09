@@ -7,9 +7,9 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         
-        /* Sfondo con sfumature di colore visibili che si muovono lentamente */
+        /* Sfondo con effetto SFUMATO ACQUERELLO (Palette Neutra: Fumo e Seta) */
         body { 
-            background-color: #060608; 
+            background-color: #0e0e10; /* Base scura ma morbida, non nero assoluto */
             color: #ffffff; 
             display: flex; 
             justify-content: center; 
@@ -20,49 +20,55 @@
             position: relative;
         }
         
-        /* Le due nuvole di colore (Sfumature) */
+        /* Le macchie di acquerello che si espandono e sfumano */
         body::before, body::after {
             content: '';
             position: absolute;
-            width: 320px;
-            height: 320px;
             border-radius: 50%;
-            filter: blur(90px); /* Ridotto il blur per rendere il colore più denso e visibile */
+            filter: blur(100px); /* Ampia sfocatura per l'effetto pigmento nell'acqua */
             z-index: 1;
-            opacity: 0.45;
-            animation: floatGlow 10s infinite alternate ease-in-out;
+            opacity: 0.25; /* Molto soffuso, non disturba la lettura */
+            animation: watercolorBleed 14s infinite alternate ease-in-out;
         }
-        /* Viola Intenso a sinistra */
+        
+        /* Macchia 1: Grigio fumo caldo / Tortora */
         body::before { 
-            background: linear-gradient(135deg, #6366f1, #a855f7); 
-            top: 10%; 
-            left: 5%; 
+            background: radial-gradient(circle, #4a4643 0%, #2c2a29 60%, transparent 100%); 
+            width: 550px;
+            height: 550px;
+            top: -15%; 
+            left: -10%; 
         }
-        /* Blu Oceanico a destra */
+        
+        /* Macchia 2: Beige Seta sbiadito / Grigio perla */
         body::after { 
-            background: linear-gradient(135deg, #06b6d4, #3b82f6); 
-            bottom: 10%; 
-            right: 5%; 
+            background: radial-gradient(circle, #5a5752 0%, #1e1e21 70%, transparent 100%); 
+            width: 600px;
+            height: 600px;
+            bottom: -20%; 
+            right: -10%; 
             animation-delay: 3s; 
         }
         
-        @keyframes floatGlow {
-            0% { transform: translateY(0) scale(1) rotate(0deg); }
-            100% { transform: translateY(40px) scale(1.2) rotate(45deg); }
+        /* Movimento liquido e morbido dell'acquerello */
+        @keyframes watercolorBleed {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.2; }
+            50% { transform: scale(1.08) translate(30px, -20px); opacity: 0.28; }
+            100% { transform: scale(0.92) translate(-15px, 30px); opacity: 0.22; }
         }
 
-        /* Contenitore Smartphone in Vetro Satinato che assorbe i colori di sfondo */
+        /* Contenitore smartphone in vetro satinato opaco */
         .phone-container { 
             width: 100%; 
             max-width: 380px; 
             height: 82vh; 
-            background: rgba(15, 15, 20, 0.75); 
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.12); 
+            background: rgba(20, 20, 22, 0.65); /* Più trasparente per far passare la sfumatura */
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
+            border: 1px solid rgba(255, 255, 255, 0.06); 
             border-radius: 40px; 
             position: relative; 
-            box-shadow: 0 40px 80px rgba(0,0,0,0.7); 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6); 
             padding: 30px 25px; 
             display: flex; 
             flex-direction: column; 
@@ -71,7 +77,7 @@
             z-index: 2;
         }
 
-        /* Schermate con transizione morbida a dissolvenza */
+        /* Schermate con dissolvenza morbida (Fade) */
         .screen { 
             display: none; 
             width: 100%; 
@@ -81,43 +87,41 @@
             align-items: center; 
             text-align: center; 
             opacity: 0;
-            transition: opacity 0.4s ease-in-out;
+            transition: opacity 0.5s ease-in-out;
         }
         .screen.active { 
             display: flex; 
             opacity: 1;
         }
 
-        h2 { font-size: 0.95rem; color: rgba(255,255,255,0.85); font-weight: 400; margin-bottom: 25px; letter-spacing: 4px; text-transform: uppercase; }
+        h2 { font-size: 0.9rem; color: rgba(255,255,255,0.7); font-weight: 400; margin-bottom: 25px; letter-spacing: 4px; text-transform: uppercase; }
         p { font-size: 0.9rem; line-height: 1.6; color: #a1a1aa; margin-bottom: 35px; letter-spacing: 0.3px; text-align: left; width: 100%; }
         
-        /* Pulsante Access con leggero riflesso */
-        .btn-start { background: #ffffff; color: #000000; border: none; padding: 14px 45px; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: all 0.3s ease; margin-top: 10px; box-shadow: 0 8px 25px rgba(255,255,255,0.2); }
-        .btn-start:active { transform: scale(0.96); opacity: 0.8; }
+        /* Pulsante iniziale neutro e morbido */
+        .btn-start { background: #e4e4e7; color: #18181b; border: none; padding: 14px 45px; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: all 0.3s ease; margin-top: 10px; box-shadow: 0 8px 25px rgba(255,255,255,0.05); }
+        .btn-start:active { transform: scale(0.96); opacity: 0.9; }
         
-        /* Box del Testo della Storia */
-        .story-text { font-size: 1.05rem; line-height: 1.7; color: #e4e4e7; text-align: left; background: rgba(255, 255, 255, 0.03); padding: 22px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.06); margin-bottom: 25px; width: 100%; }
-        .blank { display: inline-block; min-width: 80px; border-bottom: 1px solid rgba(255,255,255,0.5); text-align: center; color: #ffffff; font-weight: 500; padding: 0 4px; text-transform: uppercase; letter-spacing: 2px; }
+        /* Box del testo della storia */
+        .story-text { font-size: 1.05rem; line-height: 1.7; color: #f4f4f5; text-align: left; background: rgba(255, 255, 255, 0.02); padding: 22px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 25px; width: 100%; }
+        .blank { display: inline-block; min-width: 80px; border-bottom: 1px solid rgba(255,255,255,0.3); text-align: center; color: #ffffff; font-weight: 500; padding: 0 4px; text-transform: uppercase; letter-spacing: 2px; }
         
-        /* Box dell'Indizio */
-        .clue-box { background: rgba(255, 255, 255, 0.02); border: 1px dashed rgba(255,255,255,0.15); padding: 14px; border-radius: 12px; width: 100%; margin-bottom: 25px; font-size: 0.8rem; color: #a1a1aa; letter-spacing: 0.5px; text-align: center; line-height: 1.5; }
+        /* Scatola dell'indizio sbiadita */
+        .clue-box { background: rgba(0, 0, 0, 0.1); border: 1px dashed rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; width: 100%; margin-bottom: 25px; font-size: 0.8rem; color: #a1a1aa; letter-spacing: 0.5px; text-align: center; line-height: 1.5; }
         
-        /* Area Input */
+        /* Input minimalisti */
         .input-container { width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
-        .word-input { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); color: #ffffff; padding: 16px; font-size: 1rem; border-radius: 14px; text-align: center; text-transform: uppercase; letter-spacing: 3px; outline: none; transition: all 0.3s ease; width: 100%; }
-        .word-input:focus { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.08); }
+        .word-input { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.07); color: #ffffff; padding: 16px; font-size: 1rem; border-radius: 14px; text-align: center; text-transform: uppercase; letter-spacing: 3px; outline: none; transition: all 0.3s ease; width: 100%; }
+        .word-input:focus { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
         
-        /* Pulsante Submit leggermente colorato per dare un tocco vivo */
-        .btn-submit { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; padding: 15px; font-size: 0.85rem; font-weight: 500; border-radius: 14px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s; width: 100%; }
-        .btn-submit:hover { background: #ffffff; color: #000000; box-shadow: 0 10px 20px rgba(255,255,255,0.15); }
+        .btn-submit { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: #e4e4e7; padding: 15px; font-size: 0.85rem; font-weight: 500; border-radius: 14px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s; width: 100%; }
+        .btn-submit:hover { background: #e4e4e7; color: #18181b; }
         .btn-submit:active { transform: scale(0.98); }
         
-        /* Messaggio Errore Rosso */
-        .status-msg { font-size: 0.75rem; height: 20px; color: #f43f5e; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; opacity: 0.9; }
+        .status-msg { font-size: 0.75rem; height: 20px; color: #e4e4e7; opacity: 0.6; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
         
         /* Schermata Finale */
-        .final-title { color: #ffffff; font-size: 1.35rem; font-weight: 300; margin-bottom: 15px; letter-spacing: 6px; text-transform: uppercase; background: linear-gradient(to right, #ffffff, #a1a1aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .final-divider { width: 35px; height: 1px; background: rgba(255,255,255,0.25); margin-bottom: 25px; }
+        .final-title { color: #ffffff; font-size: 1.35rem; font-weight: 300; margin-bottom: 15px; letter-spacing: 6px; text-transform: uppercase; }
+        .final-divider { width: 35px; height: 1px; background: rgba(255,255,255,0.2); margin-bottom: 25px; }
         .final-sub { color: #a1a1aa; font-size: 0.9rem; letter-spacing: 0.5px; line-height: 1.7; max-width: 85%; }
     </style>
 </head>
@@ -231,7 +235,7 @@
                     const currentInput = document.getElementById('input' + currentPhase);
                     if (currentInput) currentInput.focus();
                 }, 50);
-            }, 400);
+            }, 400); // Durata dissolvenza morbida
         }
     }
 
