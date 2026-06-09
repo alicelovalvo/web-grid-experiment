@@ -7,7 +7,6 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         
-        /* Background with high-contrast watercolor bleed effect */
         body { 
             background-color: #080810; 
             color: #ffffff; 
@@ -20,7 +19,6 @@
             position: relative;
         }
         
-        /* Dynamic watercolor spots - high opacity and vibrant tones for guaranteed visibility */
         body::before, body::after {
             content: '';
             position: absolute;
@@ -31,7 +29,6 @@
             animation: watercolorBleed 12s infinite alternate ease-in-out;
         }
         
-        /* Vivid Deep Blue watercolor stain */
         body::before { 
             background: radial-gradient(circle, #1d4ed8 0%, #1e3a8a 70%, transparent 100%); 
             width: 500px;
@@ -40,7 +37,6 @@
             left: -10%; 
         }
         
-        /* Vivid Indigo/Violet watercolor stain */
         body::after { 
             background: radial-gradient(circle, #6d28d9 0%, #4c1d95 60%, transparent 100%); 
             width: 550px;
@@ -50,14 +46,12 @@
             animation-delay: 3s; 
         }
         
-        /* Fluid watercolor liquid motion animation */
         @keyframes watercolorBleed {
             0% { transform: scale(1) translate(0, 0); opacity: 0.45; }
             50% { transform: scale(1.12) translate(25px, -25px); opacity: 0.6; }
             100% { transform: scale(0.95) translate(-15px, 20px); opacity: 0.45; }
         }
 
-        /* Frosted glass container absorbing the watercolor background */
         .phone-container { 
             width: 100%; 
             max-width: 380px; 
@@ -77,7 +71,6 @@
             z-index: 2;
         }
 
-        /* Screen views with smooth fade transitions */
         .screen { 
             display: none; 
             width: 100%; 
@@ -97,18 +90,14 @@
         h2 { font-size: 0.9rem; color: rgba(255, 255, 255, 0.75); font-weight: 400; margin-bottom: 20px; letter-spacing: 4px; text-transform: uppercase; }
         p { font-size: 0.9rem; line-height: 1.6; color: #a1a1aa; margin-bottom: 35px; letter-spacing: 0.3px; text-align: left; width: 100%; }
         
-        /* Clean interaction button */
-        .btn-start { background: #ffffff; color: #0f0f17; border: none; padding: 14px 45px; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: all 0.3s ease; margin-top: 10px; box-shadow: 0 8px 25px rgba(255,255,255,0.1); }
-        .btn-start:active { transform: scale(0.96); opacity: 0.9; }
+        .btn-start, .btn-next { background: #ffffff; color: #0f0f17; border: none; padding: 14px 45px; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: all 0.3s ease; margin-top: 10px; box-shadow: 0 8px 25px rgba(255,255,255,0.1); }
+        .btn-start:active, .btn-next:active { transform: scale(0.96); opacity: 0.9; }
         
-        /* Text wrapper style */
         .story-text { font-size: 1.05rem; line-height: 1.7; color: #f4f4f5; text-align: left; background: rgba(255, 255, 255, 0.02); padding: 22px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 20px; width: 100%; }
         .blank { display: inline-block; min-width: 80px; border-bottom: 1px solid rgba(255, 255, 255, 0.3); text-align: center; color: #ffffff; font-weight: 500; padding: 0 4px; text-transform: uppercase; letter-spacing: 2px; }
         
-        /* Clue card wrapper */
         .clue-box { background: rgba(0, 0, 0, 0.15); border: 1px dashed rgba(255, 255, 255, 0.1); padding: 14px; border-radius: 12px; width: 100%; margin-bottom: 20px; font-size: 0.8rem; color: #a1a1aa; letter-spacing: 0.5px; text-align: center; line-height: 1.5; }
         
-        /* Input and submission area */
         .input-container { width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
         .word-input { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); color: #ffffff; padding: 16px; font-size: 1rem; border-radius: 14px; text-align: center; text-transform: uppercase; letter-spacing: 3px; outline: none; transition: all 0.3s ease; width: 100%; }
         .word-input:focus { border-color: rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.05); }
@@ -117,10 +106,8 @@
         .btn-submit:hover { background: #ffffff; color: #0f0f17; }
         .btn-submit:active { transform: scale(0.98); }
         
-        /* System message style */
         .status-msg { font-size: 0.75rem; height: 20px; color: #a1a1aa; opacity: 0.7; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
         
-        /* Final completion view style */
         .final-title { color: #ffffff; font-size: 1.35rem; font-weight: 300; margin-bottom: 15px; letter-spacing: 6px; text-transform: uppercase; }
         .final-divider { width: 35px; height: 1px; background: rgba(255, 255, 255, 0.2); margin-bottom: 25px; }
         .final-sub { color: #a1a1aa; font-size: 0.95rem; letter-spacing: 0.5px; line-height: 1.7; max-width: 85%; text-align: center; }
@@ -144,9 +131,9 @@
     <div id="screen-phase0" class="screen">
         <h2>[ Block: 01 / 07 ]</h2>
         <div class="story-text">
-            Everything begins when the daylight fades, leaving us alone in the <span class="blank" id="blank0">_____</span>.
+            The first encounter was just a quiet healing. But the second time our eyes met, an unspoken magnetism took over, an invisible force where we both could feel the <span class="blank" id="blank0">_____</span>.
         </div>
-        <div class="clue-box">The xx - 'Crystalised'<br>(1st stanza, 4th row, 6th word)</div>
+        <div class="clue-box">The xx - 'Hold On'<br>(1st stanza, 3rd row, 4th word)</div>
         <div class="input-container">
             <input type="text" class="word-input" id="input0" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
             <button class="btn-submit" onclick="checkWord()">Submit</button>
@@ -172,7 +159,7 @@
     <div id="screen-phase2" class="screen">
         <h2>[ Block: 03 / 07 ]</h2>
         <div class="story-text">
-            No filters. I just close my eyes and you are the only thing I <span class="blank" id="blank2">_____</span> of.
+            I just close my eyes and you are the only thing I <span class="blank" id="blank2">_____</span> of.
         </div>
         <div class="clue-box">Cigarettes After Sex - 'K.'<br>(1st stanza, 3rd row, 2nd word)</div>
         <div class="input-container">
@@ -186,9 +173,9 @@
     <div id="screen-phase3" class="screen">
         <h2>[ Block: 04 / 07 ]</h2>
         <div class="story-text">
-            An overwhelming pressure so heavy it leaves both of us completely <span class="blank" id="blank3">_____</span>.
+            A quiet warmth making its way through the silence, shifting the rhythm of my <span class="blank" id="blank3">_____</span>.
         </div>
-        <div class="clue-box">Florence + The Machine - 'Cosmic Love'<br>(2nd stanza, 3rd row, 5th word)</div>
+        <div class="clue-box">Florence + The Machine - 'Cosmic Love'<br>(3rd stanza, 1st row, 4th word)</div>
         <div class="input-container">
             <input type="text" class="word-input" id="input3" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
             <button class="btn-submit" onclick="checkWord()">Submit</button>
@@ -196,25 +183,20 @@
         <p class="status-msg" id="status3"></p>
     </div>
 
-    <!-- BLOCK 5: ALT-J -->
+    <!-- BLOCK 5: BLANK TRANSITION SCREEN (alt-J) -->
     <div id="screen-phase4" class="screen">
         <h2>[ Block: 05 / 07 ]</h2>
-        <div class="story-text">
-            An obsession that devours, tearing us apart into the <span class="blank" id="blank4">_____</span>.
+        <div style="font-style: italic; color: rgba(255,255,255,0.4); margin-bottom: 40px; letter-spacing: 1px; font-size: 0.95rem;">
+            The silence between the notes.
         </div>
-        <div class="clue-box">alt-J - 'Breezeblocks'<br>(2nd stanza, 5th row, 4th word)</div>
-        <div class="input-container">
-            <input type="text" class="word-input" id="input4" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
-            <button class="btn-submit" onclick="checkWord()">Submit</button>
-        </div>
-        <p class="status-msg" id="status4"></p>
+        <button class="btn-next" onclick="passBlankBlock()">Proceed</button>
     </div>
 
     <!-- BLOCK 6: SYSTEM OF A DOWN -->
     <div id="screen-phase5" class="screen">
         <h2>[ Block: 06 / 07 ]</h2>
         <div class="story-text">
-            An erratic chaos that overloads the system, fighting for the <span class="blank" id="blank5">_____</span>.
+            Something calm and unseen growing day by day, quietly reaching for my <span class="blank" id="blank5">_____</span>.
         </div>
         <div class="clue-box">System of a Down - 'Toxicity'<br>(1st stanza, 5th row, 4th word)</div>
         <div class="input-container">
@@ -228,7 +210,7 @@
     <div id="screen-phase6" class="screen">
         <h2>[ Block: 07 / 07 ]</h2>
         <div class="story-text">
-            Until the final friction strikes, burning straight through us like a wild <span class="blank" id="blank6">_____</span>.
+            A hidden spark that cannot be contained, the quiet way it grows into an inevitable <span class="blank" id="blank6">_____</span>.
         </div>
         <div class="clue-box">Dorothy - 'Whiskey Fever'<br>(1st stanza, 3rd row, 5th word)</div>
         <div class="input-container">
@@ -240,15 +222,23 @@
 
     <!-- FINAL SCREEN -->
     <div id="screen-final" class="screen">
-        <div class="final-title">System Unlocked</div>
+        <div class="final-title">Unlocked</div>
         <div class="final-divider"></div>
-        <div class="final-sub">The sequence is complete. The channel is open. Speak.</div>
+        <div class="final-sub">No rules, no filters.<br>Just us now.</div>
     </div>
 
 </div>
 
 <script>
-    const targetSequence = ["NIGHT", "SKIN", "THINK", "BLIND", "WILD", "SOUL", "FIRE"];
+    const targetSequence = {
+        0: "PULL",
+        1: "SKIN",
+        2: "THINK",
+        3: "HEART",
+        5: "SOUL",
+        6: "FIRE"
+    };
+    
     let currentPhase = 0;
 
     function transitionTo(screenId) {
@@ -268,6 +258,13 @@
         }
     }
 
+    function passBlankBlock() {
+        if (currentPhase === 4) {
+            currentPhase = 5;
+            transitionTo('screen-phase5');
+        }
+    }
+
     function checkWord() {
         const inputElement = document.getElementById('input' + currentPhase);
         const statusElement = document.getElementById('status' + currentPhase);
@@ -279,7 +276,12 @@
             blankElement.innerText = targetSequence[currentPhase];
             
             currentPhase++;
-            if (currentPhase < targetSequence.length) {
+            
+            if (currentPhase === 4) {
+                setTimeout(() => {
+                    transitionTo('screen-phase4');
+                }, 400);
+            } else if (currentPhase <= 6) {
                 setTimeout(() => {
                     transitionTo('screen-phase' + currentPhase);
                 }, 400);
@@ -292,7 +294,7 @@
             statusElement.innerText = "Access Denied. Resetting system...";
             
             setTimeout(() => {
-                for (let i = 0; i < targetSequence.length; i++) {
+                for (let i = 0; i <= 6; i++) {
                     const inputField = document.getElementById('input' + i);
                     const blankField = document.getElementById('blank' + i);
                     const statusField = document.getElementById('status' + i);
