@@ -6,35 +6,102 @@
     <title>Cipher</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: #080808; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; padding: 15px; }
-        .phone-container { width: 100%; max-width: 380px; height: 85vh; background: #0f0f0f; border: 1px solid #1c1c1c; border-radius: 35px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.9); padding: 25px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .screen { display: none; width: 100%; height: 100%; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .active { display: flex; }
-        h2 { font-size: 1.1rem; color: #ffffff; font-weight: 400; margin-bottom: 25px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.9; }
-        p { font-size: 0.9rem; line-height: 1.6; color: #8a8a8a; margin-bottom: 30px; letter-spacing: 0.5px; text-align: left; width: 100%; }
-        .btn-start { background: #ffffff; color: #000000; border: none; padding: 14px 40px; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: transform 0.2s; margin-top: 10px; }
-        .btn-start:active { transform: scale(0.95); }
         
-        /* Text Box */
-        .story-text { font-size: 1rem; line-height: 1.7; color: #e0e0e0; text-align: left; background: #141414; padding: 20px; border-radius: 16px; border: 1px solid #222; margin-bottom: 25px; width: 100%; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
-        .blank { display: inline-block; min-width: 75px; border-bottom: 2px dashed #444; text-align: center; color: #ffffff; font-weight: 600; padding: 0 3px; text-transform: uppercase; font-size: 0.9rem; }
+        /* Sfondo animato con sfumature soffuse (Glow Effects) */
+        body { 
+            background-color: #0a0a0c; 
+            color: #ffffff; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            overflow: hidden; 
+            padding: 15px;
+            position: relative;
+        }
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 1;
+            opacity: 0.4;
+            animation: floatGlow 8s infinite alternate ease-in-out;
+        }
+        body::before { background: #3a3f4d; top: 15%; left: 20%; }
+        body::after { background: #1a233a; bottom: 15%; right: 20%; animation-delay: 2s; }
+        @keyframes floatGlow {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(20px) scale(1.1); }
+        }
+
+        /* Contenitore stile Smartphone in Vetro Satinato */
+        .phone-container { 
+            width: 100%; 
+            max-width: 380px; 
+            height: 82vh; 
+            background: rgba(20, 20, 25, 0.7); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border-radius: 40px; 
+            position: relative; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6); 
+            padding: 30px 25px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 2;
+        }
+
+        /* Schermate con transizione a sfumare (Dissolvenza) */
+        .screen { 
+            display: none; 
+            width: 100%; 
+            height: 100%; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .screen.active { 
+            display: flex; 
+            opacity: 1;
+        }
+
+        h2 { font-size: 1rem; color: rgba(255,255,255,0.9); font-weight: 400; margin-bottom: 25px; letter-spacing: 4px; text-transform: uppercase; }
+        p { font-size: 0.9rem; line-height: 1.6; color: #a0a0aa; margin-bottom: 35px; letter-spacing: 0.3px; text-align: left; width: 100%; }
         
-        /* Clue Box */
-        .clue-box { background: #181818; border: 1px dashed #333; padding: 15px; border-radius: 10px; width: 100%; margin-bottom: 25px; font-size: 0.85rem; color: #8a8a8a; font-weight: 500; letter-spacing: 0.5px; text-align: center; line-height: 1.4; }
+        .btn-start { background: #ffffff; color: #000000; border: none; padding: 14px 45px; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: all 0.3s ease; margin-top: 10px; box-shadow: 0 10px 20px rgba(255,255,255,0.1); }
+        .btn-start:active { transform: scale(0.96); opacity: 0.8; }
         
-        /* Input Field */
+        /* Box del Testo */
+        .story-text { font-size: 1.05rem; line-height: 1.7; color: #e4e4e7; text-align: left; background: rgba(255, 255, 255, 0.03); padding: 22px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); margin-bottom: 25px; width: 100%; }
+        .blank { display: inline-block; min-width: 80px; border-bottom: 1px solid rgba(255,255,255,0.4); text-align: center; color: #ffffff; font-weight: 500; padding: 0 4px; text-transform: uppercase; letter-spacing: 2px; }
+        
+        /* Box dell'Indizio */
+        .clue-box { background: rgba(255, 255, 255, 0.02); border: 1px dashed rgba(255,255,255,0.15); padding: 14px; border-radius: 12px; width: 100%; margin-bottom: 25px; font-size: 0.8rem; color: #a0a0aa; letter-spacing: 0.5px; text-align: center; line-height: 1.5; }
+        
+        /* Input Box minimalista */
         .input-container { width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
-        .word-input { background: #1c1c1c; border: 1px solid #333; color: #ffffff; padding: 16px; font-size: 1rem; border-radius: 12px; text-align: center; text-transform: uppercase; letter-spacing: 2px; outline: none; transition: border-color 0.2s; width: 100%; }
-        .word-input:focus { border-color: #ffffff; }
-        .btn-submit { background: #ffffff; color: #000000; border: none; padding: 14px; font-size: 0.85rem; font-weight: 600; border-radius: 12px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: transform 0.2s; width: 100%; }
+        .word-input { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); color: #ffffff; padding: 16px; font-size: 1rem; border-radius: 14px; text-align: center; text-transform: uppercase; letter-spacing: 3px; outline: none; transition: all 0.3s ease; width: 100%; }
+        .word-input:focus { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.07); }
+        
+        .btn-submit { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; padding: 15px; font-size: 0.85rem; font-weight: 500; border-radius: 14px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: all 0.2s; width: 100%; }
+        .btn-submit:hover { background: #ffffff; color: #000000; }
         .btn-submit:active { transform: scale(0.98); }
         
-        .status-msg { font-size: 0.8rem; height: 20px; color: #ff3333; font-weight: 500; letter-spacing: 1px; }
+        .status-msg { font-size: 0.75rem; height: 20px; color: #f43f5e; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; opacity: 0.9; }
         
-        /* Minimal Final Screen */
-        .final-title { color: #ffffff; font-size: 1.5rem; font-weight: 300; margin-bottom: 15px; letter-spacing: 6px; text-transform: uppercase; }
-        .final-divider { width: 40px; height: 1px; background: #444; margin-bottom: 20px; }
-        .final-sub { color: #8a8a8a; font-size: 0.9rem; letter-spacing: 1px; line-height: 1.6; max-width: 80%; }
+        /* Schermata Finale Sfumata */
+        .final-title { color: #ffffff; font-size: 1.4rem; font-weight: 300; margin-bottom: 15px; letter-spacing: 6px; text-transform: uppercase; }
+        .final-divider { width: 35px; height: 1px; background: rgba(255,255,255,0.2); margin-bottom: 25px; }
+        .final-sub { color: #a0a0aa; font-size: 0.9rem; letter-spacing: 0.5px; line-height: 1.7; max-width: 85%; }
     </style>
 </head>
 <body>
@@ -48,7 +115,7 @@
             To unlock the sequence, locate the missing words hidden within the official lyrics of specific tracks.<br><br>
             Use the coordinates to count stanzas, rows, and words carefully. Type the exact word to proceed. Any mistake resets the system.
         </p>
-        <button class="btn-start" onclick="showScreen('screen-phase0')">Access</button>
+        <button class="btn-start" onclick="transitionTo('screen-phase0')">Access</button>
     </div>
 
     <!-- PHASE 1: MIND -->
@@ -121,7 +188,7 @@
         <p class="status-msg" id="status4"></p>
     </div>
 
-    <!-- DRY AND CRYPTIC FINAL SCREEN -->
+    <!-- FINAL SCREEN -->
     <div id="screen-final" class="screen">
         <div class="final-title">Sequence Complete</div>
         <div class="final-divider"></div>
@@ -134,13 +201,21 @@
     const targetSequence = ["MIND", "SKIN", "THINK", "DARK", "WILD"];
     let currentPhase = 0;
 
-    function showScreen(screenId) {
-        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.getElementById(screenId).classList.add('active');
-        
-        const currentInput = document.getElementById('input' + currentPhase);
-        if (currentInput) {
-            setTimeout(() => currentInput.focus(), 100);
+    // Gestisce il cambio schermata con effetto fade sfumato
+    function transitionTo(screenId) {
+        const activeScreen = document.querySelector('.screen.active');
+        if (activeScreen) {
+            activeScreen.style.opacity = '0';
+            setTimeout(() => {
+                activeScreen.classList.remove('active');
+                const nextScreen = document.getElementById(screenId);
+                nextScreen.classList.add('active');
+                setTimeout(() => {
+                    nextScreen.style.opacity = '1';
+                    const currentInput = document.getElementById('input' + currentPhase);
+                    if (currentInput) currentInput.focus();
+                }, 50);
+            }, 400); // Durata del fade-out
         }
     }
 
@@ -157,15 +232,15 @@
             currentPhase++;
             if (currentPhase < targetSequence.length) {
                 setTimeout(() => {
-                    showScreen('screen-phase' + currentPhase);
+                    transitionTo('screen-phase' + currentPhase);
                 }, 400);
             } else {
                 setTimeout(() => {
-                    showScreen('screen-final');
+                    transitionTo('screen-final');
                 }, 400);
             }
         } else {
-            statusElement.innerText = "ACCESS DENIED. RESETTING SYSTEM...";
+            statusElement.innerText = "Access Denied. Resetting system...";
             
             setTimeout(() => {
                 for (let i = 0; i < targetSequence.length; i++) {
@@ -174,10 +249,13 @@
                     document.getElementById('status' + i).innerText = "";
                 }
                 currentPhase = 0;
-                showScreen('screen-phase0');
+                transitionTo('screen-phase0');
             }, 1400);
         }
     }
+
+    // Inizializzazione opacità per la prima schermata
+    document.getElementById('screen-intro').style.opacity = '1';
 </script>
 </body>
 </html>
