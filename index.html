@@ -3,40 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>01</title>
+    <title>Cipher</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: #080808; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; padding: 15px; }
         .phone-container { width: 100%; max-width: 380px; height: 85vh; background: #0f0f0f; border: 1px solid #1c1c1c; border-radius: 35px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.9); padding: 25px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .screen { display: none; width: 100%; height: 100%; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         .active { display: flex; }
-        h2 { font-size: 1.3rem; color: #ffffff; font-weight: 300; margin-bottom: 20px; letter-spacing: 4px; text-transform: uppercase; }
+        h2 { font-size: 1.1rem; color: #ffffff; font-weight: 400; margin-bottom: 25px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.9; }
         p { font-size: 0.9rem; line-height: 1.6; color: #8a8a8a; margin-bottom: 30px; letter-spacing: 0.5px; text-align: left; width: 100%; }
         .btn-start { background: #ffffff; color: #000000; border: none; padding: 14px 40px; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: transform 0.2s; margin-top: 10px; }
         .btn-start:active { transform: scale(0.95); }
         
-        /* Box Testo della Fase Corrente */
+        /* Text Box */
         .story-text { font-size: 1rem; line-height: 1.7; color: #e0e0e0; text-align: left; background: #141414; padding: 20px; border-radius: 16px; border: 1px solid #222; margin-bottom: 25px; width: 100%; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
-        .blank { display: inline-block; min-width: 75px; border-bottom: 2px dashed #ff3366; text-align: center; color: #ff3366; font-weight: bold; padding: 0 3px; text-transform: uppercase; font-size: 0.9rem; }
+        .blank { display: inline-block; min-width: 75px; border-bottom: 2px dashed #444; text-align: center; color: #ffffff; font-weight: 600; padding: 0 3px; text-transform: uppercase; font-size: 0.9rem; }
         
-        /* Box Indizio */
-        .clue-box { background: #181818; border: 1px dashed #444; padding: 15px; border-radius: 10px; width: 100%; margin-bottom: 25px; font-size: 0.85rem; color: #ff3366; font-weight: 500; letter-spacing: 0.5px; text-align: center; line-height: 1.4; }
+        /* Clue Box */
+        .clue-box { background: #181818; border: 1px dashed #333; padding: 15px; border-radius: 10px; width: 100%; margin-bottom: 25px; font-size: 0.85rem; color: #8a8a8a; font-weight: 500; letter-spacing: 0.5px; text-align: center; line-height: 1.4; }
         
-        /* Input Box per Scrivere */
+        /* Input Field */
         .input-container { width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
         .word-input { background: #1c1c1c; border: 1px solid #333; color: #ffffff; padding: 16px; font-size: 1rem; border-radius: 12px; text-align: center; text-transform: uppercase; letter-spacing: 2px; outline: none; transition: border-color 0.2s; width: 100%; }
-        .word-input:focus { border-color: #ff3366; }
-        .btn-submit { background: #ff3366; color: #ffffff; border: none; padding: 14px; font-size: 0.85rem; font-weight: 600; border-radius: 12px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: transform 0.2s; width: 100%; }
+        .word-input:focus { border-color: #ffffff; }
+        .btn-submit { background: #ffffff; color: #000000; border: none; padding: 14px; font-size: 0.85rem; font-weight: 600; border-radius: 12px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: transform 0.2s; width: 100%; }
         .btn-submit:active { transform: scale(0.98); }
         
-        .status-msg { font-size: 0.8rem; height: 20px; color: #ff3366; font-weight: 500; }
+        .status-msg { font-size: 0.8rem; height: 20px; color: #ff3333; font-weight: 500; letter-spacing: 1px; }
         
-        /* Finale */
-        .heart-pulse { font-size: 4.5rem; color: #ff3366; margin-bottom: 25px; animation: pulse 1.2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
-        .final-text { color: #ffffff; font-size: 2.4rem; font-weight: bold; margin-bottom: 20px; letter-spacing: 1px; }
-        .sub-final-text { color: #ff3366; font-size: 1.15rem; letter-spacing: 2px; text-transform: uppercase; animation: blink 2s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        /* Minimal Final Screen */
+        .final-title { color: #ffffff; font-size: 1.5rem; font-weight: 300; margin-bottom: 15px; letter-spacing: 6px; text-transform: uppercase; }
+        .final-divider { width: 40px; height: 1px; background: #444; margin-bottom: 20px; }
+        .final-sub { color: #8a8a8a; font-size: 0.9rem; letter-spacing: 1px; line-height: 1.6; max-width: 80%; }
     </style>
 </head>
 <body>
@@ -45,23 +43,23 @@
 
     <!-- INTRO -->
     <div id="screen-intro" class="screen active">
-        <h2>// 01</h2>
+        <h2>Lyrical Cipher</h2>
         <p>
-            To decode the blocks on the next screens, you must find the missing words hidden inside the official lyrics of specific songs.<br><br>
-            Count the stanzas, rows, and words carefully using the coordinates. Type the word directly into the field. One mistake resets everything.
+            To unlock the sequence, locate the missing words hidden within the official lyrics of specific tracks.<br><br>
+            Use the coordinates to count stanzas, rows, and words carefully. Type the exact word to proceed. Any mistake resets the system.
         </p>
-        <button class="btn-start" onclick="showScreen('screen-phase0')">Start</button>
+        <button class="btn-start" onclick="showScreen('screen-phase0')">Access</button>
     </div>
 
     <!-- PHASE 1: MIND -->
     <div id="screen-phase0" class="screen">
-        <h2>Phase 1</h2>
+        <h2>[ Block: 01 / 05 ]</h2>
         <div class="story-text">
             Some things can't be controlled. A connection that starts straight in the <span class="blank" id="blank0">_____</span>.
         </div>
         <div class="clue-box">The Temper Trap - 'Sweet Disposition'<br>(1st stanza, 8th row, 2nd word)</div>
         <div class="input-container">
-            <input type="text" class="word-input" id="input0" placeholder="Type word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
+            <input type="text" class="word-input" id="input0" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
             <button class="btn-submit" onclick="checkWord()">Submit</button>
         </div>
         <p class="status-msg" id="status0"></p>
@@ -69,13 +67,13 @@
 
     <!-- PHASE 2: SKIN -->
     <div id="screen-phase1" class="screen">
-        <h2>Phase 2</h2>
+        <h2>[ Block: 02 / 05 ]</h2>
         <div class="story-text">
             It's an instinct, a vibration moving deep beneath the <span class="blank" id="blank1">_____</span>.
         </div>
         <div class="clue-box">Linkin Park - 'Crawling'<br>(1st stanza, 1st row, 4th word)</div>
         <div class="input-container">
-            <input type="text" class="word-input" id="input1" placeholder="Type word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
+            <input type="text" class="word-input" id="input1" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
             <button class="btn-submit" onclick="checkWord()">Submit</button>
         </div>
         <p class="status-msg" id="status1"></p>
@@ -83,13 +81,13 @@
 
     <!-- PHASE 3: THINK -->
     <div id="screen-phase2" class="screen">
-        <h2>Phase 3</h2>
+        <h2>[ Block: 03 / 05 ]</h2>
         <div class="story-text">
             No filters. I just close my eyes and you are the only thing I <span class="blank" id="blank2">_____</span> of.
         </div>
         <div class="clue-box">Cigarettes After Sex - 'K.'<br>(1st stanza, 3rd row, 2nd word)</div>
         <div class="input-container">
-            <input type="text" class="word-input" id="input2" placeholder="Type word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
+            <input type="text" class="word-input" id="input2" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
             <button class="btn-submit" onclick="checkWord()">Submit</button>
         </div>
         <p class="status-msg" id="status2"></p>
@@ -97,13 +95,13 @@
 
     <!-- PHASE 4: DARK -->
     <div id="screen-phase3" class="screen">
-        <h2>Phase 4</h2>
+        <h2>[ Block: 04 / 05 ]</h2>
         <div class="story-text">
             A blinding tension that leaves everything else in the <span class="blank" id="blank3">_____</span>.
         </div>
         <div class="clue-box">Florence + The Machine - 'Cosmic Love'<br>(1st stanza, 4th row, 5th word)</div>
         <div class="input-container">
-            <input type="text" class="word-input" id="input3" placeholder="Type word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
+            <input type="text" class="word-input" id="input3" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
             <button class="btn-submit" onclick="checkWord()">Submit</button>
         </div>
         <p class="status-msg" id="status3"></p>
@@ -111,23 +109,23 @@
 
     <!-- PHASE 5: WILD -->
     <div id="screen-phase4" class="screen">
-        <h2>Phase 5</h2>
+        <h2>[ Block: 05 / 05 ]</h2>
         <div class="story-text">
             This is how we exist: real, free, and <span class="blank" id="blank4">_____</span>.
         </div>
         <div class="clue-box">The Temper Trap - 'Sweet Disposition'<br>(2nd stanza, 5th row, 2nd word)</div>
         <div class="input-container">
-            <input type="text" class="word-input" id="input4" placeholder="Type word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
+            <input type="text" class="word-input" id="input4" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
             <button class="btn-submit" onclick="checkWord()">Submit</button>
         </div>
         <p class="status-msg" id="status4"></p>
     </div>
 
-    <!-- FINAL SCREEN (CIFRATA) -->
+    <!-- DRY AND CRYPTIC FINAL SCREEN -->
     <div id="screen-final" class="screen">
-        <div class="heart-pulse">❤️</div>
-        <div class="final-text" id="secret-title"></div>
-        <div class="sub-final-text" id="secret-sub"></div>
+        <div class="final-title">Sequence Complete</div>
+        <div class="final-divider"></div>
+        <div class="final-sub">The alignment is clear. Everything else is just background noise. Now let's talk.</div>
     </div>
 
 </div>
@@ -140,7 +138,6 @@
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById(screenId).classList.add('active');
         
-        // Mette automaticamente il focus sulla casella di testo appena cambia schermata
         const currentInput = document.getElementById('input' + currentPhase);
         if (currentInput) {
             setTimeout(() => currentInput.focus(), 100);
@@ -152,31 +149,25 @@
         const statusElement = document.getElementById('status' + currentPhase);
         const blankElement = document.getElementById('blank' + currentPhase);
         
-        // Prende il valore, lo pulisce dagli spazi e lo rende maiuscolo
         const userWord = inputElement.value.trim().toUpperCase();
 
         if (userWord === targetSequence[currentPhase]) {
-            // Parola corretta: riempie lo spazio bianco temporaneamente prima di passare oltre
             blankElement.innerText = targetSequence[currentPhase];
             
             currentPhase++;
             if (currentPhase < targetSequence.length) {
                 setTimeout(() => {
                     showScreen('screen-phase' + currentPhase);
-                }, 400); // Breve transizione visiva
+                }, 400);
             } else {
                 setTimeout(() => {
-                    document.getElementById('secret-title').innerText = atob("SSBsb3ZlIHlvdS4="); 
-                    document.getElementById('secret-sub').innerText = atob("Tm93IGxvb2sgaW50byBteSBleWVzLi4u"); 
                     showScreen('screen-final');
                 }, 400);
             }
         } else {
-            // Errore: Messaggio di reset, svuota i campi e torna alla fase 0 dopo 1.2 secondi
-            statusElement.innerText = "Wrong word. System reset.";
+            statusElement.innerText = "ACCESS DENIED. RESETTING SYSTEM...";
             
             setTimeout(() => {
-                // Svuota tutti gli input scritti finora
                 for (let i = 0; i < targetSequence.length; i++) {
                     document.getElementById('input' + i).value = "";
                     document.getElementById('blank' + i).innerText = "_____";
@@ -184,7 +175,7 @@
                 }
                 currentPhase = 0;
                 showScreen('screen-phase0');
-            }, 1200);
+            }, 1400);
         }
     }
 </script>
