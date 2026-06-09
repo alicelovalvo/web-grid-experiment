@@ -108,9 +108,10 @@
         
         .status-msg { font-size: 0.75rem; height: 20px; color: #a1a1aa; opacity: 0.7; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
         
-        .final-title { color: #ffffff; font-size: 1.35rem; font-weight: 300; margin-bottom: 15px; letter-spacing: 6px; text-transform: uppercase; }
+        .final-title { color: #ffffff; font-size: 1.35rem; font-weight: 300; margin-bottom: 20px; letter-spacing: 6px; text-transform: uppercase; }
         .final-divider { width: 35px; height: 1px; background: rgba(255, 255, 255, 0.2); margin-bottom: 25px; }
-        .final-sub { color: #a1a1aa; font-size: 0.95rem; letter-spacing: 0.5px; line-height: 1.7; max-width: 85%; text-align: center; }
+        .final-sub { color: #ffffff; font-size: 1.1rem; letter-spacing: 0.5px; line-height: 1.8; max-width: 90%; text-align: center; font-weight: 300; }
+        .highlight-action { font-size: 1.2rem; font-weight: 500; color: #ffffff; margin-top: 30px; display: block; letter-spacing: 2px; text-transform: uppercase; border: 1px dashed rgba(255, 255, 255, 0.3); padding: 15px; border-radius: 15px; background: rgba(255, 255, 255, 0.02); }
     </style>
 </head>
 <body>
@@ -121,10 +122,11 @@
     <div id="screen-intro" class="screen active">
         <h2>Lyrical Cipher</h2>
         <p>
-            To unlock the sequence, locate the missing words hidden within the official lyrics of specific tracks.<br><br>
-            Use the coordinates to count stanzas, rows, and words carefully. Type the exact word to proceed. Any mistake resets the system.
+            You are inside the system.<br><br>
+            To unlock the final layer, you must solve a sequence of hidden words within specific tracks. Follow the coordinates, fill the blanks, and crack the cipher.<br><br>
+            Be careful: any mistake resets your access. Complete the game to unlock the final message.
         </p>
-        <button class="btn-start" onclick="transitionTo('screen-phase0')">Access</button>
+        <button class="btn-start" onclick="transitionTo('screen-phase0')">Start Game</button>
     </div>
 
     <!-- BLOCK 1: THE XX -->
@@ -222,9 +224,13 @@
 
     <!-- FINAL SCREEN -->
     <div id="screen-final" class="screen">
-        <div class="final-title">Unlocked</div>
+        <div class="final-title">System Decrypted</div>
         <div class="final-divider"></div>
-        <div class="final-sub">No rules, no filters.<br>Just us now.</div>
+        <div class="final-sub">
+            Mission accomplished, Agent. <br>
+            The game is complete, the encryption has dropped, and all filters are gone.
+            <span class="highlight-action">Look at me and open the note.</span>
+        </div>
     </div>
 
 </div>
