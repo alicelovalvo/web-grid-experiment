@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Architecture v3.2</title>
+    <title>System Architecture v4.0</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: #080808; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; padding: 15px; }
         .phone-container { width: 100%; max-width: 380px; height: 85vh; background: #0f0f0f; border: 1px solid #1c1c1c; border-radius: 35px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.9); padding: 25px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .screen { display: none; width: 100%; height: 100%; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         .active { display: flex; }
-        h2 { font-size: 1.3rem; color: #ffffff; font-weight: 300; margin-bottom: 25px; letter-spacing: 4px; text-transform: uppercase; }
-        p { font-size: 1rem; line-height: 1.6; color: #8a8a8a; margin-bottom: 35px; letter-spacing: 1px; }
-        .btn-start { background: #ffffff; color: #000000; border: none; padding: 14px 40px; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: transform 0.2s; }
+        h2 { font-size: 1.3rem; color: #ffffff; font-weight: 300; margin-bottom: 20px; letter-spacing: 4px; text-transform: uppercase; }
+        p { font-size: 0.9rem; line-height: 1.6; color: #8a8a8a; margin-bottom: 30px; letter-spacing: 0.5px; text-align: left; width: 100%; }
+        .btn-start { background: #ffffff; color: #000000; border: none; padding: 14px 40px; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: transform 0.2s; margin-top: 10px; }
         .btn-start:active { transform: scale(0.95); }
         
         /* Frase interattiva */
-        .story-text { font-size: 1rem; line-height: 1.7; color: #e0e0e0; text-align: left; background: #141414; padding: 20px; border-radius: 166px; border-radius: 16px; border: 1px solid #222; margin-bottom: 25px; width: 100%; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
-        .blank { display: inline-block; min-width: 75px; border-bottom: 2px dashed #ff3366; text-align: center; color: #ff3366; font-weight: bold; padding: 0 3px; transition: all 0.3s; text-transform: uppercase; font-size: 0.9rem; }
+        .story-text { font-size: 0.95rem; line-height: 1.7; color: #e0e0e0; text-align: left; background: #141414; padding: 18px; border-radius: 16px; border: 1px solid #222; margin-bottom: 20px; width: 100%; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
+        .blank { display: inline-block; min-width: 70px; border-bottom: 2px dashed #ff3366; text-align: center; color: #ff3366; font-weight: bold; padding: 0 3px; transition: all 0.3s; text-transform: uppercase; font-size: 0.85rem; }
         .blank.filled { border-bottom: 2px solid #00ff88; color: #00ff88; animation: pop 0.3s ease; }
         @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
         
-        /* Pulsanti Parole */
+        /* Box Indizio Corrente */
+        .clue-box { background: #181818; border: 1px dashed #444; padding: 12px; border-radius: 10px; width: 100%; margin-bottom: 15px; font-size: 0.85rem; color: #ff3366; font-weight: 500; letter-spacing: 0.5px; text-align: center; }
+        
+        /* Pulsanti Scelte Opzioni */
         .word-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; margin-bottom: 15px; }
         .word-btn { background: #1c1c1c; border: 1px solid #333; color: #ffffff; padding: 12px; font-size: 0.8rem; font-weight: 500; border-radius: 10px; cursor: pointer; letter-spacing: 1px; transition: all 0.2s; text-transform: uppercase; }
         .word-btn:active { background: #333; transform: scale(0.95); }
-        #game-status { font-size: 0.85rem; height: 20px; color: #ff3366; font-weight: 500; }
+        #game-status { font-size: 0.8rem; height: 20px; color: #ff3366; font-weight: 500; }
         
         /* Schermata Finale */
         .heart-pulse { font-size: 4.5rem; color: #ff3366; margin-bottom: 25px; animation: pulse 1.2s infinite; }
@@ -39,23 +42,28 @@
 
 <div class="phone-container">
 
-    <!-- SCREEN 1: ULTRA-MINIMAL INTRO -->
+    <!-- SCREEN 1: INSTRUCTIONS INTRO -->
     <div id="screen1" class="screen active">
         <h2>// 01</h2>
-        <p>Fill in the blanks.</p>
+        <p>
+            To decode the text on the next screen, you must find the missing words hidden inside the official lyrics of our songs.<br><br>
+            Count the stanzas, rows, and words carefully using the provided coordinates to fill in the blanks. One mistake resets the system.
+        </p>
         <button class="btn-start" onclick="nextScreen(1, 2)">Start</button>
     </div>
 
-    <!-- SCREEN 2: INTERACTIVE LYRICS GAME -->
+    <!-- SCREEN 2: INTERACTIVE LYRICS GAME WITH CLUES -->
     <div id="screen2" class="screen">
         <h2>Decode the Lyrics</h2>
-        <p style="margin-bottom: 15px; font-size: 0.75rem; color: #666;">Find the missing pieces hidden inside the verses of our songs:</p>
         
         <div class="story-text">
             Some things simply can't be controlled, like the instinct that kicks in when we are together. An energy moving deep beneath the <span class="blank" id="b0">_____</span>. We push past every boundary, finding our balance right in the middle of the <span class="blank" id="b1">_____</span>. It's a rhythm far too <span class="blank" id="b2">_____</span> to stop now, something pulling us beneath the <span class="blank" id="b3">_____</span>. This is how we exist, tuned into our <span class="blank" id="b4">_____</span>.
         </div>
 
-        <!-- Parole mescolate -->
+        <!-- Box dinamico per l'indizio corrente -->
+        <div class="clue-box" id="current-clue">Loading clue...</div>
+
+        <!-- Opzioni di scelta mescolate -->
         <div class="word-grid">
             <button class="word-btn" onclick="selectWord('MESS')">Mess</button>
             <button class="word-btn" onclick="selectWord('DARK')">Dark</button>
@@ -80,7 +88,20 @@
 
 <script>
     const targetSequence = ["SKIN", "MESS", "WILD", "SURFACE", "SUPERPOSITION"];
+    
+    // Lista degli indizi per ciascuno step
+    const clues = [
+        "WORD 1: Linkin Park - 'Crawling'<br>(1st stanza, 1st row, 4th word)",
+        "WORD 2: Vance Joy - 'Mess Is Mine'<br>(1st stanza, 4th row, 6th word)",
+        "WORD 3: The Temper Trap - 'Sweet Disposition'<br>(2nd stanza, 5th row, 2nd word)",
+        "WORD 4: Linkin Park - 'Crawling'<br>(2nd stanza, 2nd row, 10th word)",
+        "WORD 5: Young the Giant - 'Superposition'<br>(1st stanza, 1st row, 4th word)"
+    ];
+    
     let currentStep = 0;
+
+    // Inizializza il primo indizio
+    document.getElementById('current-clue').innerHTML = clues[0];
 
     function nextScreen(current, next) {
         document.getElementById('screen' + current).classList.remove('active');
@@ -95,18 +116,23 @@
             document.getElementById('game-status').innerText = "";
             currentStep++;
             
-            if (currentStep === targetSequence.length) {
-                // Messaggi finali in Base64
+            if (currentStep < targetSequence.length) {
+                // Aggiorna il box con l'indizio successivo
+                document.getElementById('current-clue').innerHTML = clues[currentStep];
+            } else {
+                // Fine del gioco, sblocco Base64
                 document.getElementById('secret-title').innerText = atob("SSBsb3ZlIHlvdS4="); 
                 document.getElementById('secret-sub').innerText = atob("Tm93IGxvb2sgaW50byBteSBleWVzLi4u"); 
                 
+                document.getElementById('current-clue').style.display = "none";
                 document.getElementById('game-status').style.color = "#00ff88";
                 document.getElementById('game-status').innerText = "Verified.";
                 setTimeout(() => { nextScreen(2, 3); }, 1000);
             }
         } else {
-            document.getElementById('game-status').innerText = "System reset.";
+            document.getElementById('game-status').innerText = "System reset. Count carefully.";
             currentStep = 0;
+            document.getElementById('current-clue').innerHTML = clues[0];
             for (let i = 0; i < targetSequence.length; i++) {
                 let b = document.getElementById('b' + i);
                 b.innerText = "_____";
