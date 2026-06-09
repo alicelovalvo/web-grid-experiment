@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Architecture v4.0</title>
+    <title>01</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: #080808; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; padding: 15px; }
@@ -15,22 +15,20 @@
         .btn-start { background: #ffffff; color: #000000; border: none; padding: 14px 40px; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border-radius: 50px; transition: transform 0.2s; margin-top: 10px; }
         .btn-start:active { transform: scale(0.95); }
         
-        /* Frase interattiva */
-        .story-text { font-size: 0.95rem; line-height: 1.7; color: #e0e0e0; text-align: left; background: #141414; padding: 18px; border-radius: 16px; border: 1px solid #222; margin-bottom: 20px; width: 100%; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
-        .blank { display: inline-block; min-width: 70px; border-bottom: 2px dashed #ff3366; text-align: center; color: #ff3366; font-weight: bold; padding: 0 3px; transition: all 0.3s; text-transform: uppercase; font-size: 0.85rem; }
-        .blank.filled { border-bottom: 2px solid #00ff88; color: #00ff88; animation: pop 0.3s ease; }
-        @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
+        /* Box Testo della Fase Corrente */
+        .story-text { font-size: 1rem; line-height: 1.7; color: #e0e0e0; text-align: left; background: #141414; padding: 20px; border-radius: 16px; border: 1px solid #222; margin-bottom: 25px; width: 100%; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
+        .blank { display: inline-block; min-width: 75px; border-bottom: 2px dashed #ff3366; text-align: center; color: #ff3366; font-weight: bold; padding: 0 3px; text-transform: uppercase; font-size: 0.9rem; }
         
-        /* Box Indizio Corrente */
-        .clue-box { background: #181818; border: 1px dashed #444; padding: 12px; border-radius: 10px; width: 100%; margin-bottom: 15px; font-size: 0.85rem; color: #ff3366; font-weight: 500; letter-spacing: 0.5px; text-align: center; }
+        /* Box Indizio */
+        .clue-box { background: #181818; border: 1px dashed #444; padding: 15px; border-radius: 10px; width: 100%; margin-bottom: 25px; font-size: 0.85rem; color: #ff3366; font-weight: 500; letter-spacing: 0.5px; text-align: center; line-height: 1.4; }
         
-        /* Pulsanti Scelte Opzioni */
+        /* Griglia Pulsanti */
         .word-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; margin-bottom: 15px; }
-        .word-btn { background: #1c1c1c; border: 1px solid #333; color: #ffffff; padding: 12px; font-size: 0.8rem; font-weight: 500; border-radius: 10px; cursor: pointer; letter-spacing: 1px; transition: all 0.2s; text-transform: uppercase; }
+        .word-btn { background: #1c1c1c; border: 1px solid #333; color: #ffffff; padding: 14px; font-size: 0.85rem; font-weight: 500; border-radius: 10px; cursor: pointer; letter-spacing: 1px; transition: all 0.2s; text-transform: uppercase; }
         .word-btn:active { background: #333; transform: scale(0.95); }
-        #game-status { font-size: 0.8rem; height: 20px; color: #ff3366; font-weight: 500; }
+        .status-msg { font-size: 0.8rem; height: 20px; color: #ff3366; font-weight: 500; }
         
-        /* Schermata Finale */
+        /* Finale */
         .heart-pulse { font-size: 4.5rem; color: #ff3366; margin-bottom: 25px; animation: pulse 1.2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
         .final-text { color: #ffffff; font-size: 2.4rem; font-weight: bold; margin-bottom: 20px; letter-spacing: 1px; }
@@ -42,43 +40,73 @@
 
 <div class="phone-container">
 
-    <!-- SCREEN 1: INSTRUCTIONS INTRO -->
-    <div id="screen1" class="screen active">
+    <!-- INTRO -->
+    <div id="screen-intro" class="screen active">
         <h2>// 01</h2>
         <p>
-            To decode the text on the next screen, you must find the missing words hidden inside the official lyrics of our songs.<br><br>
-            Count the stanzas, rows, and words carefully using the provided coordinates to fill in the blanks. One mistake resets the system.
+            To decode the blocks on the next screens, you must find the missing words hidden inside the official lyrics of specific songs.<br><br>
+            Count the stanzas, rows, and words carefully using the coordinates. One mistake resets the entire sequence.
         </p>
-        <button class="btn-start" onclick="nextScreen(1, 2)">Start</button>
+        <button class="btn-start" onclick="showScreen('screen-phase0')">Start</button>
     </div>
 
-    <!-- SCREEN 2: INTERACTIVE LYRICS GAME WITH CLUES -->
-    <div id="screen2" class="screen">
-        <h2>Decode the Lyrics</h2>
-        
+    <!-- PHASE 1: MIND -->
+    <div id="screen-phase0" class="screen">
+        <h2>Phase 1</h2>
         <div class="story-text">
-            Some things simply can't be controlled, like the instinct that kicks in when we are together. An energy moving deep beneath the <span class="blank" id="b0">_____</span>. We push past every boundary, finding our balance right in the middle of the <span class="blank" id="b1">_____</span>. It's a rhythm far too <span class="blank" id="b2">_____</span> to stop now, something pulling us beneath the <span class="blank" id="b3">_____</span>. This is how we exist, tuned into our <span class="blank" id="b4">_____</span>.
+            Some things can't be controlled. A connection that starts straight in the <span class="blank">_____</span>.
         </div>
-
-        <!-- Box dinamico per l'indizio corrente -->
-        <div class="clue-box" id="current-clue">Loading clue...</div>
-
-        <!-- Opzioni di scelta mescolate -->
-        <div class="word-grid">
-            <button class="word-btn" onclick="selectWord('MESS')">Mess</button>
-            <button class="word-btn" onclick="selectWord('DARK')">Dark</button>
-            <button class="word-btn" onclick="selectWord('WILD')">Wild</button>
-            <button class="word-btn" onclick="selectWord('SKIN')">Skin</button>
-            <button class="word-btn" onclick="selectWord('SUPERPOSITION')">Superposition</button>
-            <button class="word-btn" onclick="selectWord('MIND')">Mind</button>
-            <button class="word-btn" onclick="selectWord('SURFACE')">Surface</button>
-            <button class="word-btn" onclick="selectWord('LIGHT')">Light</button>
-        </div>
-        <p id="game-status"></p>
+        <div class="clue-box">The Temper Trap - 'Sweet Disposition'<br>(1st stanza, 8th row, 2nd word)</div>
+        <div class="word-grid" id="grid0"></div>
+        <p class="status-msg"></p>
     </div>
 
-    <!-- SCREEN 3: PROTECTED FINAL LOCK -->
-    <div id="screen3" class="screen">
+    <!-- PHASE 2: SKIN -->
+    <div id="screen-phase1" class="screen">
+        <h2>Phase 2</h2>
+        <div class="story-text">
+            It's an instinct, a vibration moving deep beneath the <span class="blank">_____</span>.
+        </div>
+        <div class="clue-box">Linkin Park - 'Crawling'<br>(1st stanza, 1st row, 4th word)</div>
+        <div class="word-grid" id="grid1"></div>
+        <p class="status-msg"></p>
+    </div>
+
+    <!-- PHASE 3: THINK -->
+    <div id="screen-phase2" class="screen">
+        <h2>Phase 3</h2>
+        <div class="story-text">
+            No filters. I just close my eyes and you are the only thing I <span class="blank">_____</span> of.
+        </div>
+        <div class="clue-box">Cigarettes After Sex - 'K.'<br>(1st stanza, 3rd row, 2nd word)</div>
+        <div class="word-grid" id="grid2"></div>
+        <p class="status-msg"></p>
+    </div>
+
+    <!-- PHASE 4: DARK -->
+    <div id="screen-phase3" class="screen">
+        <h2>Phase 4</h2>
+        <div class="story-text">
+            A blinding tension that leaves everything else in the <span class="blank">_____</span>.
+        </div>
+        <div class="clue-box">Florence + The Machine - 'Cosmic Love'<br>(1st stanza, 4th row, 5th word)</div>
+        <div class="word-grid" id="grid3"></div>
+        <p class="status-msg"></p>
+    </div>
+
+    <!-- PHASE 5: WILD -->
+    <div id="screen-phase4" class="screen">
+        <h2>Phase 5</h2>
+        <div class="story-text">
+            This is how we exist: real, free, and <span class="blank">_____</span>.
+        </div>
+        <div class="clue-box">The Temper Trap - 'Sweet Disposition'<br>(2nd stanza, 5th row, 2nd word)</div>
+        <div class="word-grid" id="grid4"></div>
+        <p class="status-msg"></p>
+    </div>
+
+    <!-- FINAL SCREEN (CIFRATA) -->
+    <div id="screen-final" class="screen">
         <div class="heart-pulse">❤️</div>
         <div class="final-text" id="secret-title"></div>
         <div class="sub-final-text" id="secret-sub"></div>
@@ -87,59 +115,66 @@
 </div>
 
 <script>
-    const targetSequence = ["SKIN", "MESS", "WILD", "SURFACE", "SUPERPOSITION"];
+    const targetSequence = ["MIND", "SKIN", "THINK", "DARK", "WILD"];
     
-    // Lista degli indizi per ciascuno step
-    const clues = [
-        "WORD 1: Linkin Park - 'Crawling'<br>(1st stanza, 1st row, 4th word)",
-        "WORD 2: Vance Joy - 'Mess Is Mine'<br>(1st stanza, 4th row, 6th word)",
-        "WORD 3: The Temper Trap - 'Sweet Disposition'<br>(2nd stanza, 5th row, 2nd word)",
-        "WORD 4: Linkin Park - 'Crawling'<br>(2nd stanza, 2nd row, 10th word)",
-        "WORD 5: Young the Giant - 'Superposition'<br>(1st stanza, 1st row, 4th word)"
+    const wordPools = [
+        ["MIND", "HEART", "SOUL", "HEAD"],
+        ["SKIN", "BODY", "BLOOD", "BONE"],
+        ["THINK", "DREAM", "WANT", "HEAR"],
+        ["DARK", "LIGHT", "NIGHT", "SHADOWS"],
+        ["WILD", "FREE", "LOST", "CALM"]
     ];
-    
-    let currentStep = 0;
 
-    // Inizializza il primo indizio
-    document.getElementById('current-clue').innerHTML = clues[0];
+    let currentPhase = 0;
 
-    function nextScreen(current, next) {
-        document.getElementById('screen' + current).classList.remove('active');
-        document.getElementById('screen' + next).classList.add('active');
+    function showScreen(screenId) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(screenId).classList.add('active');
     }
 
-    function selectWord(word) {
-        if (word === targetSequence[currentStep]) {
-            let blankSpace = document.getElementById('b' + currentStep);
-            blankSpace.innerText = word;
-            blankSpace.classList.add('filled');
-            document.getElementById('game-status').innerText = "";
-            currentStep++;
-            
-            if (currentStep < targetSequence.length) {
-                // Aggiorna il box con l'indizio successivo
-                document.getElementById('current-clue').innerHTML = clues[currentStep];
-            } else {
-                // Fine del gioco, sblocco Base64
-                document.getElementById('secret-title').innerText = atob("SSBsb3ZlIHlvdS4="); 
-                document.getElementById('secret-sub').innerText = atob("Tm93IGxvb2sgaW50byBteSBleWVzLi4u"); 
-                
-                document.getElementById('current-clue').style.display = "none";
-                document.getElementById('game-status').style.color = "#00ff88";
-                document.getElementById('game-status').innerText = "Verified.";
-                setTimeout(() => { nextScreen(2, 3); }, 1000);
-            }
-        } else {
-            document.getElementById('game-status').innerText = "System reset. Count carefully.";
-            currentStep = 0;
-            document.getElementById('current-clue').innerHTML = clues[0];
-            for (let i = 0; i < targetSequence.length; i++) {
-                let b = document.getElementById('b' + i);
-                b.innerText = "_____";
-                b.classList.remove('filled');
-            }
+    function shuffle(array) {
+        return array.sort(() => Math.random() - 0.5);
+    }
+
+    function generateGrids() {
+        for (let i = 0; i < wordPools.length; i++) {
+            const grid = document.getElementById('grid' + i);
+            grid.innerHTML = '';
+            let shuffledPool = shuffle([...wordPools[i]]);
+            shuffledPool.forEach(word => {
+                const btn = document.createElement('button');
+                btn.className = 'word-btn';
+                btn.innerText = word;
+                btn.onclick = () => checkWord(word);
+                grid.appendChild(btn);
+            });
         }
     }
+
+    function checkWord(word) {
+        if (word === targetSequence[currentPhase]) {
+            currentPhase++;
+            if (currentPhase < targetSequence.length) {
+                showScreen('screen-phase' + currentPhase);
+            } else {
+                document.getElementById('secret-title').innerText = atob("SSBsb3ZlIHlvdS4="); 
+                document.getElementById('secret-sub').innerText = atob("Tm93IGxvb2sgaW50byBteSBleWVzLi4u"); 
+                showScreen('screen-final');
+            }
+        } else {
+            const activeStatus = document.querySelector('.active .status-msg');
+            if (activeStatus) activeStatus.innerText = "Wrong word. System reset.";
+            
+            setTimeout(() => {
+                currentPhase = 0;
+                document.querySelectorAll('.status-msg').forEach(m => m.innerText = "");
+                generateGrids();
+                showScreen('screen-phase0');
+            }, 1200);
+        }
+    }
+
+    generateGrids();
 </script>
 </body>
 </html>
