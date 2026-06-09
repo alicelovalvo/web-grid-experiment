@@ -22,10 +22,13 @@
         /* Box Indizio */
         .clue-box { background: #181818; border: 1px dashed #444; padding: 15px; border-radius: 10px; width: 100%; margin-bottom: 25px; font-size: 0.85rem; color: #ff3366; font-weight: 500; letter-spacing: 0.5px; text-align: center; line-height: 1.4; }
         
-        /* Griglia Pulsanti */
-        .word-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; margin-bottom: 15px; }
-        .word-btn { background: #1c1c1c; border: 1px solid #333; color: #ffffff; padding: 14px; font-size: 0.85rem; font-weight: 500; border-radius: 10px; cursor: pointer; letter-spacing: 1px; transition: all 0.2s; text-transform: uppercase; }
-        .word-btn:active { background: #333; transform: scale(0.95); }
+        /* Input Box per Scrivere */
+        .input-container { width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
+        .word-input { background: #1c1c1c; border: 1px solid #333; color: #ffffff; padding: 16px; font-size: 1rem; border-radius: 12px; text-align: center; text-transform: uppercase; letter-spacing: 2px; outline: none; transition: border-color 0.2s; width: 100%; }
+        .word-input:focus { border-color: #ff3366; }
+        .btn-submit { background: #ff3366; color: #ffffff; border: none; padding: 14px; font-size: 0.85rem; font-weight: 600; border-radius: 12px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: transform 0.2s; width: 100%; }
+        .btn-submit:active { transform: scale(0.98); }
+        
         .status-msg { font-size: 0.8rem; height: 20px; color: #ff3366; font-weight: 500; }
         
         /* Finale */
@@ -45,7 +48,7 @@
         <h2>// 01</h2>
         <p>
             To decode the blocks on the next screens, you must find the missing words hidden inside the official lyrics of specific songs.<br><br>
-            Count the stanzas, rows, and words carefully using the coordinates. One mistake resets the entire sequence.
+            Count the stanzas, rows, and words carefully using the coordinates. Type the word directly into the field. One mistake resets everything.
         </p>
         <button class="btn-start" onclick="showScreen('screen-phase0')">Start</button>
     </div>
@@ -54,55 +57,70 @@
     <div id="screen-phase0" class="screen">
         <h2>Phase 1</h2>
         <div class="story-text">
-            Some things can't be controlled. A connection that starts straight in the <span class="blank">_____</span>.
+            Some things can't be controlled. A connection that starts straight in the <span class="blank" id="blank0">_____</span>.
         </div>
         <div class="clue-box">The Temper Trap - 'Sweet Disposition'<br>(1st stanza, 8th row, 2nd word)</div>
-        <div class="word-grid" id="grid0"></div>
-        <p class="status-msg"></p>
+        <div class="input-container">
+            <input type="text" class="word-input" id="input0" placeholder="Type word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
+            <button class="btn-submit" onclick="checkWord()">Submit</button>
+        </div>
+        <p class="status-msg" id="status0"></p>
     </div>
 
     <!-- PHASE 2: SKIN -->
     <div id="screen-phase1" class="screen">
         <h2>Phase 2</h2>
         <div class="story-text">
-            It's an instinct, a vibration moving deep beneath the <span class="blank">_____</span>.
+            It's an instinct, a vibration moving deep beneath the <span class="blank" id="blank1">_____</span>.
         </div>
         <div class="clue-box">Linkin Park - 'Crawling'<br>(1st stanza, 1st row, 4th word)</div>
-        <div class="word-grid" id="grid1"></div>
-        <p class="status-msg"></p>
+        <div class="input-container">
+            <input type="text" class="word-input" id="input1" placeholder="Type word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
+            <button class="btn-submit" onclick="checkWord()">Submit</button>
+        </div>
+        <p class="status-msg" id="status1"></p>
     </div>
 
     <!-- PHASE 3: THINK -->
     <div id="screen-phase2" class="screen">
         <h2>Phase 3</h2>
         <div class="story-text">
-            No filters. I just close my eyes and you are the only thing I <span class="blank">_____</span> of.
+            No filters. I just close my eyes and you are the only thing I <span class="blank" id="blank2">_____</span> of.
         </div>
         <div class="clue-box">Cigarettes After Sex - 'K.'<br>(1st stanza, 3rd row, 2nd word)</div>
-        <div class="word-grid" id="grid2"></div>
-        <p class="status-msg"></p>
+        <div class="input-container">
+            <input type="text" class="word-input" id="input2" placeholder="Type word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
+            <button class="btn-submit" onclick="checkWord()">Submit</button>
+        </div>
+        <p class="status-msg" id="status2"></p>
     </div>
 
     <!-- PHASE 4: DARK -->
     <div id="screen-phase3" class="screen">
         <h2>Phase 4</h2>
         <div class="story-text">
-            A blinding tension that leaves everything else in the <span class="blank">_____</span>.
+            A blinding tension that leaves everything else in the <span class="blank" id="blank3">_____</span>.
         </div>
         <div class="clue-box">Florence + The Machine - 'Cosmic Love'<br>(1st stanza, 4th row, 5th word)</div>
-        <div class="word-grid" id="grid3"></div>
-        <p class="status-msg"></p>
+        <div class="input-container">
+            <input type="text" class="word-input" id="input3" placeholder="Type word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
+            <button class="btn-submit" onclick="checkWord()">Submit</button>
+        </div>
+        <p class="status-msg" id="status3"></p>
     </div>
 
     <!-- PHASE 5: WILD -->
     <div id="screen-phase4" class="screen">
         <h2>Phase 5</h2>
         <div class="story-text">
-            This is how we exist: real, free, and <span class="blank">_____</span>.
+            This is how we exist: real, free, and <span class="blank" id="blank4">_____</span>.
         </div>
         <div class="clue-box">The Temper Trap - 'Sweet Disposition'<br>(2nd stanza, 5th row, 2nd word)</div>
-        <div class="word-grid" id="grid4"></div>
-        <p class="status-msg"></p>
+        <div class="input-container">
+            <input type="text" class="word-input" id="input4" placeholder="Type word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
+            <button class="btn-submit" onclick="checkWord()">Submit</button>
+        </div>
+        <p class="status-msg" id="status4"></p>
     </div>
 
     <!-- FINAL SCREEN (CIFRATA) -->
@@ -116,65 +134,59 @@
 
 <script>
     const targetSequence = ["MIND", "SKIN", "THINK", "DARK", "WILD"];
-    
-    const wordPools = [
-        ["MIND", "HEART", "SOUL", "HEAD"],
-        ["SKIN", "BODY", "BLOOD", "BONE"],
-        ["THINK", "DREAM", "WANT", "HEAR"],
-        ["DARK", "LIGHT", "NIGHT", "SHADOWS"],
-        ["WILD", "FREE", "LOST", "CALM"]
-    ];
-
     let currentPhase = 0;
 
     function showScreen(screenId) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById(screenId).classList.add('active');
-    }
-
-    function shuffle(array) {
-        return array.sort(() => Math.random() - 0.5);
-    }
-
-    function generateGrids() {
-        for (let i = 0; i < wordPools.length; i++) {
-            const grid = document.getElementById('grid' + i);
-            grid.innerHTML = '';
-            let shuffledPool = shuffle([...wordPools[i]]);
-            shuffledPool.forEach(word => {
-                const btn = document.createElement('button');
-                btn.className = 'word-btn';
-                btn.innerText = word;
-                btn.onclick = () => checkWord(word);
-                grid.appendChild(btn);
-            });
+        
+        // Mette automaticamente il focus sulla casella di testo appena cambia schermata
+        const currentInput = document.getElementById('input' + currentPhase);
+        if (currentInput) {
+            setTimeout(() => currentInput.focus(), 100);
         }
     }
 
-    function checkWord(word) {
-        if (word === targetSequence[currentPhase]) {
+    function checkWord() {
+        const inputElement = document.getElementById('input' + currentPhase);
+        const statusElement = document.getElementById('status' + currentPhase);
+        const blankElement = document.getElementById('blank' + currentPhase);
+        
+        // Prende il valore, lo pulisce dagli spazi e lo rende maiuscolo
+        const userWord = inputElement.value.trim().toUpperCase();
+
+        if (userWord === targetSequence[currentPhase]) {
+            // Parola corretta: riempie lo spazio bianco temporaneamente prima di passare oltre
+            blankElement.innerText = targetSequence[currentPhase];
+            
             currentPhase++;
             if (currentPhase < targetSequence.length) {
-                showScreen('screen-phase' + currentPhase);
+                setTimeout(() => {
+                    showScreen('screen-phase' + currentPhase);
+                }, 400); // Breve transizione visiva
             } else {
-                document.getElementById('secret-title').innerText = atob("SSBsb3ZlIHlvdS4="); 
-                document.getElementById('secret-sub').innerText = atob("Tm93IGxvb2sgaW50byBteSBleWVzLi4u"); 
-                showScreen('screen-final');
+                setTimeout(() => {
+                    document.getElementById('secret-title').innerText = atob("SSBsb3ZlIHlvdS4="); 
+                    document.getElementById('secret-sub').innerText = atob("Tm93IGxvb2sgaW50byBteSBleWVzLi4u"); 
+                    showScreen('screen-final');
+                }, 400);
             }
         } else {
-            const activeStatus = document.querySelector('.active .status-msg');
-            if (activeStatus) activeStatus.innerText = "Wrong word. System reset.";
+            // Errore: Messaggio di reset, svuota i campi e torna alla fase 0 dopo 1.2 secondi
+            statusElement.innerText = "Wrong word. System reset.";
             
             setTimeout(() => {
+                // Svuota tutti gli input scritti finora
+                for (let i = 0; i < targetSequence.length; i++) {
+                    document.getElementById('input' + i).value = "";
+                    document.getElementById('blank' + i).innerText = "_____";
+                    document.getElementById('status' + i).innerText = "";
+                }
                 currentPhase = 0;
-                document.querySelectorAll('.status-msg').forEach(m => m.innerText = "");
-                generateGrids();
                 showScreen('screen-phase0');
             }, 1200);
         }
     }
-
-    generateGrids();
 </script>
 </body>
 </html>
