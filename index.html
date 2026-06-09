@@ -123,7 +123,7 @@
         /* Final completion view style */
         .final-title { color: #ffffff; font-size: 1.35rem; font-weight: 300; margin-bottom: 15px; letter-spacing: 6px; text-transform: uppercase; }
         .final-divider { width: 35px; height: 1px; background: rgba(255, 255, 255, 0.2); margin-bottom: 25px; }
-        .final-sub { color: #a1a1aa; font-size: 0.9rem; letter-spacing: 0.5px; line-height: 1.7; max-width: 85%; }
+        .final-sub { color: #a1a1aa; font-size: 0.95rem; letter-spacing: 0.5px; line-height: 1.7; max-width: 85%; text-align: center; }
     </style>
 </head>
 <body>
@@ -144,9 +144,9 @@
     <div id="screen-phase0" class="screen">
         <h2>[ Block: 01 / 07 ]</h2>
         <div class="story-text">
-            It starts silently, a quiet feeling that grows into pure <span class="blank" id="blank0">_____</span>.
+            Everything begins when the daylight fades, leaving us alone in the <span class="blank" id="blank0">_____</span>.
         </div>
-        <div class="clue-box">The xx - 'Angels'<br>(1st stanza, 1st row, 4th word)</div>
+        <div class="clue-box">The xx - 'Crystalised'<br>(1st stanza, 4th row, 6th word)</div>
         <div class="input-container">
             <input type="text" class="word-input" id="input0" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
             <button class="btn-submit" onclick="checkWord()">Submit</button>
@@ -186,9 +186,9 @@
     <div id="screen-phase3" class="screen">
         <h2>[ Block: 04 / 07 ]</h2>
         <div class="story-text">
-            A blinding tension that leaves everything else in the <span class="blank" id="blank3">_____</span>.
+            An overwhelming pressure so heavy it leaves both of us completely <span class="blank" id="blank3">_____</span>.
         </div>
-        <div class="clue-box">Florence + The Machine - 'Cosmic Love'<br>(1st stanza, 4th row, 5th word)</div>
+        <div class="clue-box">Florence + The Machine - 'Cosmic Love'<br>(2nd stanza, 3rd row, 5th word)</div>
         <div class="input-container">
             <input type="text" class="word-input" id="input3" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
             <button class="btn-submit" onclick="checkWord()">Submit</button>
@@ -228,9 +228,9 @@
     <div id="screen-phase6" class="screen">
         <h2>[ Block: 07 / 07 ]</h2>
         <div class="story-text">
-            Until the final alignment, burning bright like a reawakened <span class="blank" id="blank6">_____</span>.
+            Until the final friction strikes, burning straight through us like a wild <span class="blank" id="blank6">_____</span>.
         </div>
-        <div class="clue-box">Dorothy - 'Flawless'<br>(1st stanza, 4th row, 3rd word)</div>
+        <div class="clue-box">Dorothy - 'Whiskey Fever'<br>(1st stanza, 3rd row, 5th word)</div>
         <div class="input-container">
             <input type="text" class="word-input" id="input6" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
             <button class="btn-submit" onclick="checkWord()">Submit</button>
@@ -240,15 +240,15 @@
 
     <!-- FINAL SCREEN -->
     <div id="screen-final" class="screen">
-        <div class="final-title">Sequence Complete</div>
+        <div class="final-title">System Unlocked</div>
         <div class="final-divider"></div>
-        <div class="final-sub">The alignment is clear. Everything else is just background noise. Now let's talk.</div>
+        <div class="final-sub">The sequence is complete. The channel is open. Speak.</div>
     </div>
 
 </div>
 
 <script>
-    const targetSequence = ["LOVE", "SKIN", "THINK", "DARK", "WILD", "SOUL", "FIRE"];
+    const targetSequence = ["NIGHT", "SKIN", "THINK", "BLIND", "WILD", "SOUL", "FIRE"];
     let currentPhase = 0;
 
     function transitionTo(screenId) {
