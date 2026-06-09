@@ -20,14 +20,14 @@
             position: relative;
         }
         
-        /* Dynamic watercolor spots - increased opacity and vibrant tones for guaranteed visibility */
+        /* Dynamic watercolor spots - high opacity and vibrant tones for guaranteed visibility */
         body::before, body::after {
             content: '';
             position: absolute;
             border-radius: 50%;
-            filter: blur(60px); /* Reduced blur to keep the watercolor pigment dense and vibrant */
+            filter: blur(60px); 
             z-index: 1;
-            opacity: 0.5; /* Higher opacity so colors don't fade into black */
+            opacity: 0.5; 
             animation: watercolorBleed 12s infinite alternate ease-in-out;
         }
         
@@ -61,7 +61,7 @@
         .phone-container { 
             width: 100%; 
             max-width: 380px; 
-            height: 82vh; 
+            height: 85vh; 
             background: rgba(15, 15, 25, 0.65); 
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
@@ -94,7 +94,7 @@
             opacity: 1;
         }
 
-        h2 { font-size: 0.9rem; color: rgba(255, 255, 255, 0.75); font-weight: 400; margin-bottom: 25px; letter-spacing: 4px; text-transform: uppercase; }
+        h2 { font-size: 0.9rem; color: rgba(255, 255, 255, 0.75); font-weight: 400; margin-bottom: 20px; letter-spacing: 4px; text-transform: uppercase; }
         p { font-size: 0.9rem; line-height: 1.6; color: #a1a1aa; margin-bottom: 35px; letter-spacing: 0.3px; text-align: left; width: 100%; }
         
         /* Clean interaction button */
@@ -102,11 +102,11 @@
         .btn-start:active { transform: scale(0.96); opacity: 0.9; }
         
         /* Text wrapper style */
-        .story-text { font-size: 1.05rem; line-height: 1.7; color: #f4f4f5; text-align: left; background: rgba(255, 255, 255, 0.02); padding: 22px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 25px; width: 100%; }
+        .story-text { font-size: 1.05rem; line-height: 1.7; color: #f4f4f5; text-align: left; background: rgba(255, 255, 255, 0.02); padding: 22px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 20px; width: 100%; }
         .blank { display: inline-block; min-width: 80px; border-bottom: 1px solid rgba(255, 255, 255, 0.3); text-align: center; color: #ffffff; font-weight: 500; padding: 0 4px; text-transform: uppercase; letter-spacing: 2px; }
         
         /* Clue card wrapper */
-        .clue-box { background: rgba(0, 0, 0, 0.15); border: 1px dashed rgba(255, 255, 255, 0.1); padding: 14px; border-radius: 12px; width: 100%; margin-bottom: 25px; font-size: 0.8rem; color: #a1a1aa; letter-spacing: 0.5px; text-align: center; line-height: 1.5; }
+        .clue-box { background: rgba(0, 0, 0, 0.15); border: 1px dashed rgba(255, 255, 255, 0.1); padding: 14px; border-radius: 12px; width: 100%; margin-bottom: 20px; font-size: 0.8rem; color: #a1a1aa; letter-spacing: 0.5px; text-align: center; line-height: 1.5; }
         
         /* Input and submission area */
         .input-container { width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
@@ -130,6 +130,7 @@
 
 <div class="phone-container">
 
+    <!-- INTRO -->
     <div id="screen-intro" class="screen active">
         <h2>Lyrical Cipher</h2>
         <p>
@@ -139,12 +140,13 @@
         <button class="btn-start" onclick="transitionTo('screen-phase0')">Access</button>
     </div>
 
+    <!-- BLOCK 1: THE XX -->
     <div id="screen-phase0" class="screen">
-        <h2>[ Block: 01 / 05 ]</h2>
+        <h2>[ Block: 01 / 07 ]</h2>
         <div class="story-text">
-            Some things can't be controlled. A connection that starts straight in the <span class="blank" id="blank0">_____</span>.
+            It starts silently, a quiet feeling that grows into pure <span class="blank" id="blank0">_____</span>.
         </div>
-        <div class="clue-box">The Temper Trap - 'Sweet Disposition'<br>(1st stanza, 8th row, 2nd word)</div>
+        <div class="clue-box">The xx - 'Angels'<br>(1st stanza, 1st row, 4th word)</div>
         <div class="input-container">
             <input type="text" class="word-input" id="input0" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
             <button class="btn-submit" onclick="checkWord()">Submit</button>
@@ -152,8 +154,9 @@
         <p class="status-msg" id="status0"></p>
     </div>
 
+    <!-- BLOCK 2: LINKIN PARK -->
     <div id="screen-phase1" class="screen">
-        <h2>[ Block: 02 / 05 ]</h2>
+        <h2>[ Block: 02 / 07 ]</h2>
         <div class="story-text">
             It's an instinct, a vibration moving deep beneath the <span class="blank" id="blank1">_____</span>.
         </div>
@@ -165,8 +168,9 @@
         <p class="status-msg" id="status1"></p>
     </div>
 
+    <!-- BLOCK 3: CIGARETTES AFTER SEX -->
     <div id="screen-phase2" class="screen">
-        <h2>[ Block: 03 / 05 ]</h2>
+        <h2>[ Block: 03 / 07 ]</h2>
         <div class="story-text">
             No filters. I just close my eyes and you are the only thing I <span class="blank" id="blank2">_____</span> of.
         </div>
@@ -178,8 +182,9 @@
         <p class="status-msg" id="status2"></p>
     </div>
 
+    <!-- BLOCK 4: FLORENCE + THE MACHINE -->
     <div id="screen-phase3" class="screen">
-        <h2>[ Block: 04 / 05 ]</h2>
+        <h2>[ Block: 04 / 07 ]</h2>
         <div class="story-text">
             A blinding tension that leaves everything else in the <span class="blank" id="blank3">_____</span>.
         </div>
@@ -191,12 +196,13 @@
         <p class="status-msg" id="status3"></p>
     </div>
 
+    <!-- BLOCK 5: ALT-J -->
     <div id="screen-phase4" class="screen">
-        <h2>[ Block: 05 / 05 ]</h2>
+        <h2>[ Block: 05 / 07 ]</h2>
         <div class="story-text">
-            This is how we exist: real, free, and <span class="blank" id="blank4">_____</span>.
+            An obsession that devours, tearing us apart into the <span class="blank" id="blank4">_____</span>.
         </div>
-        <div class="clue-box">The Temper Trap - 'Sweet Disposition'<br>(2nd stanza, 5th row, 2nd word)</div>
+        <div class="clue-box">alt-J - 'Breezeblocks'<br>(2nd stanza, 5th row, 4th word)</div>
         <div class="input-container">
             <input type="text" class="word-input" id="input4" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
             <button class="btn-submit" onclick="checkWord()">Submit</button>
@@ -204,6 +210,35 @@
         <p class="status-msg" id="status4"></p>
     </div>
 
+    <!-- BLOCK 6: SYSTEM OF A DOWN -->
+    <div id="screen-phase5" class="screen">
+        <h2>[ Block: 06 / 07 ]</h2>
+        <div class="story-text">
+            An erratic chaos that overloads the system, fighting for the <span class="blank" id="blank5">_____</span>.
+        </div>
+        <div class="clue-box">System of a Down - 'Toxicity'<br>(1st stanza, 5th row, 4th word)</div>
+        <div class="input-container">
+            <input type="text" class="word-input" id="input5" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
+            <button class="btn-submit" onclick="checkWord()">Submit</button>
+        </div>
+        <p class="status-msg" id="status5"></p>
+    </div>
+
+    <!-- BLOCK 7: DOROTHY -->
+    <div id="screen-phase6" class="screen">
+        <h2>[ Block: 07 / 07 ]</h2>
+        <div class="story-text">
+            Until the final alignment, burning bright like a reawakened <span class="blank" id="blank6">_____</span>.
+        </div>
+        <div class="clue-box">Dorothy - 'Flawless'<br>(1st stanza, 4th row, 3rd word)</div>
+        <div class="input-container">
+            <input type="text" class="word-input" id="input6" placeholder="Enter word..." autocomplete="off" onkeydown="if(event.key === 'Enter') checkWord()">
+            <button class="btn-submit" onclick="checkWord()">Submit</button>
+        </div>
+        <p class="status-msg" id="status6"></p>
+    </div>
+
+    <!-- FINAL SCREEN -->
     <div id="screen-final" class="screen">
         <div class="final-title">Sequence Complete</div>
         <div class="final-divider"></div>
@@ -213,7 +248,7 @@
 </div>
 
 <script>
-    const targetSequence = ["MIND", "SKIN", "THINK", "DARK", "WILD"];
+    const targetSequence = ["LOVE", "SKIN", "THINK", "DARK", "WILD", "SOUL", "FIRE"];
     let currentPhase = 0;
 
     function transitionTo(screenId) {
@@ -258,9 +293,12 @@
             
             setTimeout(() => {
                 for (let i = 0; i < targetSequence.length; i++) {
-                    document.getElementById('input' + i).value = "";
-                    document.getElementById('blank' + i).innerText = "_____";
-                    document.getElementById('status' + i).innerText = "";
+                    const inputField = document.getElementById('input' + i);
+                    const blankField = document.getElementById('blank' + i);
+                    const statusField = document.getElementById('status' + i);
+                    if (inputField) inputField.value = "";
+                    if (blankField) blankField.innerText = "_____";
+                    if (statusField) statusField.innerText = "";
                 }
                 currentPhase = 0;
                 transitionTo('screen-phase0');
